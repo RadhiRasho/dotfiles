@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = falsehttps://github.com/RadhiRasho/dotfiles/tree/master
+add_newline = false
 right_format = "($nodejs)"
 
 # Replace the '❯' symbol in the prompt with '➜'
