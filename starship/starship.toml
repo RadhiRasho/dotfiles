@@ -1,27 +1,30 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+'$schema' = 'https://starship.rs/config-schema.json'
 
 add_newline = false
-right_format = "($nodejs) ($bun)"
+right_format = '($nodejs)($bun)($golang)'
+
+continuation_prompt = '[∙](bright-black) '
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
 success_symbol = '[❯](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-error_symbol = "[❯](bold red)"
+error_symbol = '[❯](bold red)'
 
 [container]
 disabled = true
 
 [line_break]
-disabled = false
+disabled = true
 
 [directory]
 fish_style_pwd_dir_length = 0
 truncation_length = 1
-truncation_symbol = "🏠 "
-read_only = "🔒 "
-style = "yellow bold"
+truncation_symbol = '🏠 '
+read_only = '🔒 '
+truncate_to_repo = true
+use_logical_path = true
+style = 'bold yellow'
 disabled = false
-
 
 [package]
 disabled = true
@@ -29,24 +32,29 @@ disabled = true
 [azure]
 disabled = false
 format = '[$symbol($subscription)($duration)]($style) '
-symbol = "☁️  "
+symbol = '☁️  '
 style = 'blue bold'
 
 [git_branch]
 symbol = '🌱 '
 truncation_symbol = ''
-format = "[$symbol$branch(:$remote_branch)]($style) "
+format = '[$symbol$branch(:$remote_branch)]($style) '
 ignore_branches = ['master', 'main']
 disabled = false
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 cherry_pick = '[🍒 PICKING](bold red)'
+rebase = '[🔃 REBASE](bold blue)'
+merge = '[⚔️ MERGING](bold purple)'
 disabled = false
 
 [git_metrics]
-added_style = 'bold blue'
 format = '[+$added]($added_style):[-$deleted]($deleted_style) '
+added_style = 'bold green'
+deleted_style = 'bold red'
+ignore_submodules = true
+only_nonzero_diffs = true
 disabled = false
 
 [sudo]
@@ -79,3 +87,13 @@ format = '[$symbol$version]($style) '
 symbol = '🦀 '
 style = 'bold red'
 disabled = false
+
+[bun]
+format = '[$symbol$version]($style)'
+symbol = '🥐 '
+style = 'bold yellow'
+
+[golang]
+format = '[$symbol$version]($style)'
+symbol = '🐹 '
+style = 'bold cyan'
