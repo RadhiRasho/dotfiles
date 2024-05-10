@@ -14,7 +14,7 @@ error_symbol = '[ᗇ](bold red)'
 disabled = true
 
 [line_break]
-disabled = true
+disabled = false
 
 [directory]
 fish_style_pwd_dir_length = 0
