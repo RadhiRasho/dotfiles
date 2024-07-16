@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="devcontainers"
 
-plugins=(git ssh-agent npm yarn rust jsontools bun man golang zoxide colored-man-pages gnu-utils colorize command-not-found safe-paste common-aliases gitignore nvm npm node zsh-autosuggestions vscode web-search zsh-syntax-highlighting starship)
+plugins=(git ssh-agent npm yarn rust jsontools bun man golang fzf fzf-tab zoxide colored-man-pages gnu-utils colorize command-not-found safe-paste common-aliases gitignore nvm npm node zsh-autosuggestions vscode web-search zsh-syntax-highlighting starship)
 
 source $ZSH/oh-my-zsh.sh
 
