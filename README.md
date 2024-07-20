@@ -16,6 +16,11 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 ```
 
+## Bun:
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
 
 ## fzf + zoxide Setup
 https://jeffry.in/lightweight-intelligent-completion-in-zsh
