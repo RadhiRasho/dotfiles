@@ -36,3 +36,9 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 ```bash
 curl -fsSL https://bun.sh/install | bash
 ```
+
+
+## ZGen: 
+```bash
+https://github.com/tarjoilija/zgen
+```
