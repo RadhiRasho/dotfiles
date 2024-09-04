@@ -25,6 +25,7 @@ else
     echo "bun executable not found in $HOME/.bun/bin. Please check your bun installation."
 fi
 
+# Go
 if [ -f "/usr/local/go/bin/go" ]; then
     export PATH="$PATH:/usr/local/go/bin"
     export PATH="$PATH:$HOME/go/bin"
