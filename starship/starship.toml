@@ -1,7 +1,7 @@
 '$schema' = 'https://starship.rs/config-schema.json'
 
 add_newline = false
-right_format = '($nodejs)($bun)($golang)'
+right_format = '($nodejs)( $bun)( $golang)( $rust)( $zig)( $c)'
 
 continuation_prompt = '[∙](bright-black) '
 
@@ -76,24 +76,34 @@ disabled = false
 
 
 [nodejs]
-format = '[🚀 $version](bold green) '
+format = '[🚀 $version](bold green)'
 disabled = false
 
 [os]
 disabled = false
 
 [rust]
-format = '[$symbol$version]($style) '
+format = '[$symbol$version]($style)'
 symbol = '🦀 '
 style = 'bold red'
 disabled = false
 
 [bun]
 format = '[$symbol$version]($style)'
-symbol = '🥐 '
+symbol = '🐇 '
 style = 'bold yellow'
 
 [golang]
 format = '[$symbol$version]($style)'
 symbol = '🐹 '
 style = 'bold cyan'
+
+[zig]
+format = '[$symbol$version]($style)'
+symbol = '⚡ '
+style = 'bold yellow'
+
+[c]
+format = '[$symbol$version-$name]($style)'
+symbol = "C "
+style = "149 bold"
