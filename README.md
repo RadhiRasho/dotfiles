@@ -27,6 +27,11 @@ curl -sS https://starship.rs/install.sh | sh
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 ```
 
+## fzf
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+```
+
 ## fzf-tab
 ```bash
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
@@ -37,6 +42,10 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 curl -fsSL https://bun.sh/install | bash
 ```
 
+## FNM: 
+```bash
+curl -fsSL https://fnm.vercel.app/install | bash
+```
 
 ## ZGen: 
 ```bash
