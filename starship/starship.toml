@@ -107,3 +107,8 @@ style = 'bold yellow'
 format = '[$symbol$version-$name]($style)'
 symbol = "C "
 style = "149 bold"
+
+[deno]
+format = '[$symbol$version]($style)'
+symbol = "🦕 "
+style = "bold green"
