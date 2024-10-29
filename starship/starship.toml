@@ -1,7 +1,7 @@
 '$schema' = 'https://starship.rs/config-schema.json'
 
 add_newline = false
-right_format = '($nodejs)( $bun)( $golang)( $rust)( $zig)( $c)'
+right_format = '($nodejs)( $bun)( $golang)( $rust)( $zig)( $c)( $deno)'
 
 continuation_prompt = '[∙](bright-black) '
 
