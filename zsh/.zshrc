@@ -13,6 +13,7 @@ ZSH_COLORIZE_STYLE="colorful"
 alias cls="clear"
 alias zshconfig="code ~/.zshrc"
 alias starconfig="code ~/.config/starship.toml"
+alias cd="z"
 
 # bun
 if [ -f "$HOME/.bun/bin/bun" ]; then
