@@ -1,6 +1,12 @@
 # dotfiles
 my configuration files
 
+## Installation
+Run the following script to install all the tools:
+```bash
+./install.sh
+```
+
 ## zsh-syntax-highlighting:
 ```bash
 https://github.com/zsh-users/zsh-syntax-highlighting
@@ -42,12 +48,7 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 curl -fsSL https://bun.sh/install | bash
 ```
 
-## FNM: 
+## FNM:
 ```bash
 curl -fsSL https://fnm.vercel.app/install | bash
-```
-
-## ZGen: 
-```bash
-https://github.com/tarjoilija/zgen
 ```
