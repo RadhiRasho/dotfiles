@@ -46,3 +46,5 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/vscode/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+
+# tthis is a small test of something
