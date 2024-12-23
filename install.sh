@@ -50,7 +50,7 @@ fi
 
 # Install FNM
 echo "Installing FNM..."
-if [ ! -f "$HOME/.local/bin/share/fnm" ]; then
+if [ ! -d "$HOME/.local/share/fnm" ]; then
   curl -fsSL https://fnm.vercel.app/install | bash
 else
   echo "FNM already installed."
