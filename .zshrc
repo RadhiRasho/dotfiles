@@ -1,6 +1,5 @@
-
-# tthis is a small test of something
 export ZSH=$HOME/.oh-my-zsh
+# tthis is a small test of something
 
 ZSH_THEME="devcontainers"
 
