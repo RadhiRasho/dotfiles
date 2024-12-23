@@ -4,7 +4,7 @@ my configuration files
 ## Installation
 Run the following script to install all the tools:
 ```bash
-curl -sSfL https://raw.githubusercontent.com/RadhiRasho/dotfiles/master/install.sh | sh
+curl -sSfL https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/install.sh | sh
 
 ```
 

@@ -82,8 +82,7 @@ echo "Setting up .zshrc..."
 
 echo "Copying .zshrc..."
 
-# use curl to get content of .zshrc at https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/.zshrc and save it to ~/.zshrc
-curl -sSfL https://raw.githubusercontent.com/RadhiRasho/dotfiles/master/.zshrc > ~/.zshrc
+curl -sSfL https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/.zshrc > ~/.zshrc
 
 echo "Setting up .zshrc... Done!"
 
@@ -102,8 +101,7 @@ echo "==========================================================================
 
 echo "Copying starship.toml..."
 
-# use curl to get content of starship.toml at https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/starship.toml and save it to ~/.config/starship.toml
-curl -sSfL https://raw.githubusercontent.com/RadhiRasho/dotfiles/master/starship.toml > ~/.config/starship.toml
+curl -sSfL https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/starship.toml > ~/.config/starship.toml
 
 echo "Setting up starship... Done!"
 
