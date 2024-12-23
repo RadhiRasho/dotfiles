@@ -4,7 +4,8 @@ my configuration files
 ## Installation
 Run the following script to install all the tools:
 ```bash
-./install.sh
+curl -sSfL https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/install.sh?token=GHSAT0AAAAAACYLPHXYP73WTMJWERX7TLOKZ3JSCJA | sh
+
 ```
 
 ## zsh-syntax-highlighting:
