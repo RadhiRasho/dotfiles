@@ -16,6 +16,13 @@ disabled = true
 [line_break]
 disabled = false
 
+[cmd_duration]
+disabled = false
+min_time = 2000
+show_milliseconds = true
+format = '- [$duration]($style) '
+style = 'yellow bold'
+
 [directory]
 fish_style_pwd_dir_length = 0
 truncation_length = 1
@@ -105,10 +112,10 @@ style = 'bold yellow'
 
 [c]
 format = '[$symbol$version-$name]($style)'
-symbol = "C "
-style = "149 bold"
+symbol = 'C '
+style = '149 bold'
 
 [deno]
 format = '[$symbol$version]($style)'
-symbol = "🦕 "
-style = "bold green"
+symbol = '🦕 '
+style = 'bold green'
