@@ -26,13 +26,6 @@ else
     echo "bun executable not found in $HOME/.bun/bin. Please check your bun installation."
 fi
 
-if [ -f "/usr/local/go/bin/go" ]; then
-    export PATH="$PATH:/usr/local/go/bin"
-    export PATH="$PATH:$HOME/go/bin"
-else
-    echo "Go executable not found in /usr/local/go/bin. Please check your Go installation."
-fi
-
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
     enable-fzf-tab
