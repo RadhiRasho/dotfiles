@@ -19,7 +19,6 @@ disabled = false
 [cmd_duration]
 disabled = false
 min_time = 2000
-show_milliseconds = true
 format = '- [$duration]($style) '
 style = 'yellow bold'
 
