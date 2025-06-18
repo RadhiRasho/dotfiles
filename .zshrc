@@ -39,3 +39,9 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/vscode/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+
+# SSH Agent setup
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+    ssh-add ~/.ssh/id_ed25519 2>/dev/null
+fi
