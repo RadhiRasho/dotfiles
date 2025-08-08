@@ -87,6 +87,7 @@ disabled = false
 
 [os]
 disabled = false
+symbols = { Arch = "🌹"}
 
 [rust]
 format = '[$symbol$version]($style)'
