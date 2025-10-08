@@ -210,9 +210,3 @@ Feel free to use and modify these dotfiles for your own setup!
 ## 🤝 Contributing
 
 Feel free to submit issues or pull requests if you have suggestions for improvements!
-
-## FNM
-
-```bash
-curl -fsSL https://fnm.vercel.app/install | bash
-```
