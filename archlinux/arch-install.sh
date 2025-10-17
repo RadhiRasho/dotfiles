@@ -7,6 +7,13 @@ echo "Arch Linux Setup Script"
 echo "=========================================="
 echo ""
 
+if command -v sudo &> /dev/null; then
+    echo "Sudo is installed."
+else
+    echo "Sudo is not installed. Please install sudo and re-run this script."
+    exit 1
+fi
+
 # Color codes for output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -108,8 +115,8 @@ else
 fi
 print_separator
 
-# Install essential packages
-print_status "Installing essential packages..."
+# Install all packages in one go (more efficient)
+print_status "Installing essential packages, shell tools, and development tools..."
 sudo pacman -S --noconfirm --needed \
     git \
     wget \
@@ -123,21 +130,11 @@ sudo pacman -S --noconfirm --needed \
     openssh \
     man-db \
     man-pages \
-    tldr
-print_separator
-
-# Install Zsh and shell tools
-print_status "Installing Zsh and shell tools..."
-sudo pacman -S --noconfirm --needed \
+    tldr \
     zsh \
     fzf \
     bat \
-    starship
-print_separator
-
-# Install development tools
-print_status "Installing development tools..."
-sudo pacman -S --noconfirm --needed \
+    starship \
     go \
     jq \
     github-cli
@@ -148,13 +145,11 @@ print_status "Installing yay (AUR helper)..."
 if command -v yay &> /dev/null; then
     print_status "yay already installed"
 else
-    cd /tmp
-    rm -rf /tmp/yay  # Clean up any existing directory first
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
+    git clone https://aur.archlinux.org/yay.git /tmp/yay-install
+    cd /tmp/yay-install
     makepkg -si --noconfirm
-    cd ~
-    rm -rf /tmp/yay
+    cd - > /dev/null
+    rm -rf /tmp/yay-install
     print_status "yay installed successfully"
 fi
 print_separator
@@ -169,33 +164,24 @@ else
 fi
 print_separator
 
-# Install Oh My Zsh custom plugins
+# Install Oh My Zsh custom plugins in parallel
 print_status "Installing Oh My Zsh custom plugins..."
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
-# Install zsh-syntax-highlighting
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    print_status "zsh-syntax-highlighting installed"
-else
-    print_status "zsh-syntax-highlighting already installed"
-fi
+# Clone all plugins in parallel for faster installation
+(
+    [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] && \
+        git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" &
+    [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && \
+        git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" &
+    [ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ] && \
+        git clone --depth=1 https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab" &
+    wait
+)
 
-# Install zsh-autosuggestions
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    print_status "zsh-autosuggestions installed"
-else
-    print_status "zsh-autosuggestions already installed"
-fi
-
-# Install fzf-tab
-if [ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ]; then
-    git clone https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
-    print_status "fzf-tab installed"
-else
-    print_status "fzf-tab already installed"
-fi
+[ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] && print_status "zsh-syntax-highlighting ready"
+[ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && print_status "zsh-autosuggestions ready"
+[ -d "$ZSH_CUSTOM/plugins/fzf-tab" ] && print_status "fzf-tab ready"
 print_separator
 
 # Install zoxide
@@ -230,23 +216,11 @@ print_separator
 
 # Change default shell to zsh
 print_status "Setting zsh as default shell..."
-if [ "$SHELL" != "$(which zsh)" ]; then
-    chsh -s $(which zsh)
-    print_status "Default shell changed to zsh (restart required)"
+if [ "$SHELL" != "$(which zsh)" ] && [ -x "$(which zsh)" ]; then
+    sudo chsh -s "$(which zsh)" "$USER"
+    print_status "Default shell changed to zsh for $USER (restart required)"
 else
     print_status "zsh is already the default shell"
-fi
-print_separator
-
-# Setup Docker (if not in WSL, as WSL handles Docker differently)
-if [ "$IS_WSL" != true ]; then
-    print_status "Configuring Docker..."
-    sudo systemctl enable docker
-    sudo systemctl start docker
-    sudo usermod -aG docker $USER
-    print_status "Docker enabled and started. You'll need to logout/login for group changes to take effect"
-else
-    print_status "WSL detected - skipping Docker service setup (use Docker Desktop for Windows)"
 fi
 print_separator
 
