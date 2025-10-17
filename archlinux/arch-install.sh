@@ -145,16 +145,17 @@ print_separator
 
 # Install AUR helper (yay)
 print_status "Installing yay (AUR helper)..."
-if ! command -v yay &> /dev/null; then
+if command -v yay &> /dev/null; then
+    print_status "yay already installed"
+else
     cd /tmp
+    rm -rf /tmp/yay  # Clean up any existing directory first
     git clone https://aur.archlinux.org/yay.git
     cd yay
     makepkg -si --noconfirm
     cd ~
     rm -rf /tmp/yay
     print_status "yay installed successfully"
-else
-    print_status "yay already installed"
 fi
 print_separator
 
@@ -283,4 +284,3 @@ echo "  ✓ Bun runtime"
 echo "  ✓ Development tools (Go)"
 echo ""
 echo "Enjoy your new Arch Linux setup! 🚀"
-
