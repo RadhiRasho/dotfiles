@@ -214,6 +214,42 @@ else
 fi
 print_separator
 
+# Install dotfiles configuration
+print_status "Installing dotfiles configuration..."
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
+
+# Backup existing configs
+if [ -f "$HOME/.zshrc" ]; then
+    cp "$HOME/.zshrc" "$HOME/.zshrc.backup.$(date +%Y%m%d-%H%M%S)"
+    print_status "Backed up existing .zshrc"
+fi
+
+if [ -f "$HOME/.config/starship.toml" ]; then
+    cp "$HOME/.config/starship.toml" "$HOME/.config/starship.toml.backup.$(date +%Y%m%d-%H%M%S)"
+    print_status "Backed up existing starship.toml"
+fi
+
+# Create config directory if it doesn't exist
+mkdir -p "$HOME/.config"
+
+# Copy dotfiles - .zshrc from archlinux folder
+if [ -f "$SCRIPT_DIR/.zshrc" ]; then
+    cp "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
+    print_status "Installed .zshrc from archlinux folder"
+else
+    print_status "Warning: .zshrc not found in archlinux directory"
+fi
+
+# Copy starship.toml from root dotfiles directory
+if [ -f "$DOTFILES_ROOT/starship.toml" ]; then
+    cp "$DOTFILES_ROOT/starship.toml" "$HOME/.config/starship.toml"
+    print_status "Installed starship.toml"
+else
+    print_status "Warning: starship.toml not found in dotfiles directory"
+fi
+print_separator
+
 # Change default shell to zsh
 print_status "Setting zsh as default shell..."
 if [ "$SHELL" != "$(which zsh)" ] && [ -x "$(which zsh)" ]; then
@@ -247,14 +283,15 @@ echo "==========================================${NC}"
 echo ""
 echo "Next steps:"
 echo "1. Logout and login again (or reboot) for shell changes to take effect"
-echo "2. (Optional) Run install.sh to download your custom .zshrc and starship.toml from GitHub"
-echo "3. Or manually configure your prompt by editing ~/.config/starship.toml"
+echo "2. Your .zshrc and starship.toml have been installed automatically"
+echo "3. Start using your new shell with all configurations ready!"
 echo ""
 echo "Installed:"
 echo "  ✓ Oh My Zsh with plugins (syntax-highlighting, autosuggestions, fzf-tab)"
 echo "  ✓ zoxide (smart cd)"
 echo "  ✓ fnm (Node.js version manager)"
 echo "  ✓ Bun runtime"
-echo "  ✓ Development tools (Go)"
+echo "  ✓ Development tools (Go, jq, gh)"
+echo "  ✓ Custom .zshrc and starship.toml configurations"
 echo ""
 echo "Enjoy your new Arch Linux setup! 🚀"
