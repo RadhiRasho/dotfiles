@@ -1,10 +1,14 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="devcontainers"
+ZSH_THEME="robbyrussell"
+
+# Always start in home directory
+cd $HOME
 
 plugins=(git npm node jsontools bun golang fzf fzf-tab zoxide common-aliases zsh-autosuggestions zsh-syntax-highlighting vscode  starship)
 
 source $ZSH/oh-my-zsh.sh
+
 
 ZSH_COLORIZE_STYLE="colorful"
 
