@@ -215,9 +215,7 @@ fi
 print_separator
 
 # Install dotfiles configuration
-print_status "Installing dotfiles configuration..."
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DOTFILES_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
+print_status "Downloading dotfiles configuration from GitHub..."
 
 # Backup existing configs
 if [ -f "$HOME/.zshrc" ]; then
@@ -233,20 +231,18 @@ fi
 # Create config directory if it doesn't exist
 mkdir -p "$HOME/.config"
 
-# Copy dotfiles - .zshrc from archlinux folder
-if [ -f "$SCRIPT_DIR/.zshrc" ]; then
-    cp "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
-    print_status "Installed .zshrc from archlinux folder"
+# Download .zshrc from GitHub
+if curl -fsSL -o "$HOME/.zshrc" "https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/archlinux/.zshrc"; then
+    print_status "Downloaded and installed .zshrc"
 else
-    print_status "Warning: .zshrc not found in archlinux directory"
+    print_status "Error: Failed to download .zshrc"
 fi
 
-# Copy starship.toml from root dotfiles directory
-if [ -f "$DOTFILES_ROOT/starship.toml" ]; then
-    cp "$DOTFILES_ROOT/starship.toml" "$HOME/.config/starship.toml"
-    print_status "Installed starship.toml"
+# Download starship.toml from GitHub
+if curl -fsSL -o "$HOME/.config/starship.toml" "https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/starship.toml"; then
+    print_status "Downloaded and installed starship.toml"
 else
-    print_status "Warning: starship.toml not found in dotfiles directory"
+    print_status "Error: Failed to download starship.toml"
 fi
 print_separator
 
