@@ -1,6 +1,12 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+export ZSH=$HOME/.oh-my-zsh
+
+# Set locale
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+ZSH_THEME="devcontainers"
 
 # Always start in home directory
 cd $HOME

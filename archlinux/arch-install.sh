@@ -38,6 +38,28 @@ if grep -qi microsoft /proc/version 2>/dev/null || grep -qi wsl /proc/version 2>
     IS_WSL=true
 fi
 
+# Configure locales
+print_status "Configuring locales..."
+if ! locale -a | grep -q "en_US.utf8"; then
+    # Uncomment en_US.UTF-8 in /etc/locale.gen
+    sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+    
+    # Generate locales
+    sudo locale-gen
+    
+    # Set system locale
+    echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf > /dev/null
+    
+    print_status "Locales configured and generated"
+else
+    print_status "Locales already configured"
+fi
+
+# Export locale for current session
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+print_separator
+
 # Create new user (optional)
 print_status "User setup..."
 if [ "$(whoami)" = "root" ]; then
