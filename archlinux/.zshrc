@@ -16,25 +16,30 @@ alias cd="z"
 # bun
 if [ -f "$HOME/.bun/bin/bun" ]; then
     # bun completions
-    [ -s "/home/vscode/.bun/_bun" ] && source "/home/vscode/.bun/_bun"
+    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$BUN_INSTALL/bin:$PATH"
-else
-    echo "bun executable not found in $HOME/.bun/bin. Please check your bun installation."
 fi
 
+# fzf - Check for Arch Linux pacman installation first, then fallback to manual install
+if [ -f /usr/share/fzf/key-bindings.zsh ]; then
+    source /usr/share/fzf/key-bindings.zsh
+fi
+
+if [ -f /usr/share/fzf/completion.zsh ]; then
+    source /usr/share/fzf/completion.zsh
+fi
+
+# Fallback to manual fzf installation
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
-    enable-fzf-tab
-else
-    echo "fzf not found, please install"
 fi
 
 # fnm
-FNM_PATH="/home/vscode/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/vscode/.local/share/fnm:$PATH"
+  export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
 fi
 

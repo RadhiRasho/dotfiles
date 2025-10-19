@@ -135,6 +135,7 @@ sudo pacman -S --noconfirm --needed \
     fzf \
     bat \
     starship \
+    zoxide \
     go \
     jq \
     github-cli
@@ -182,16 +183,6 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] && print_status "zsh-syntax-highlighting ready"
 [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && print_status "zsh-autosuggestions ready"
 [ -d "$ZSH_CUSTOM/plugins/fzf-tab" ] && print_status "fzf-tab ready"
-print_separator
-
-# Install zoxide
-print_status "Installing zoxide..."
-if ! command -v zoxide &> /dev/null; then
-    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-    print_status "zoxide installed"
-else
-    print_status "zoxide already installed"
-fi
 print_separator
 
 # Install Node Version Manager (fnm)
