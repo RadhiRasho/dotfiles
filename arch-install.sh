@@ -245,7 +245,7 @@ fi
 mkdir -p "$HOME/.config"
 
 # Download .zshrc from GitHub
-if curl -fsSL -o "$HOME/.zshrc" "https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/archlinux/.zshrc"; then
+if curl -fsSL -o "$HOME/.zshrc" "https://raw.githubusercontent.com/RadhiRasho/dotfiles/refs/heads/master/.zshrc"; then
     print_status "Downloaded and installed .zshrc"
 else
     print_status "Error: Failed to download .zshrc"
@@ -277,6 +277,10 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         echo "Enter your email for SSH key:"
         read -r email
+        echo "Enter Full Name for SSH key (optional):"
+        read -r fullname
+        git config --global user.name "$fullname"
+        git config --global user.email "$email"
         ssh-keygen -t ed25519 -C "$email"
         print_status "SSH key generated"
     fi
@@ -303,4 +307,4 @@ echo "  ✓ Bun runtime"
 echo "  ✓ Development tools (Go, jq, gh)"
 echo "  ✓ Custom .zshrc and starship.toml configurations"
 echo ""
-echo "Enjoy your new Arch Linux setup! 🚀"
+echo "Enjoy your new Arch Linux setup! 🚀 ${NC}"

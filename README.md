@@ -9,7 +9,7 @@ A comprehensive dotfiles repository for setting up a new Arch Linux installation
 1. **Run the Arch Linux setup script:**
 
    ```bash
-   bash <(curl -fsSL https://raw.githubusercontent.com/RadhiRasho/dotfiles/master/archlinux/arch-install.sh)
+   bash <(curl -fsSL https://raw.githubusercontent.com/RadhiRasho/dotfiles/master/arch-install.sh)
    ```
 
    This will install:
